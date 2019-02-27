@@ -7,9 +7,20 @@
 </head>
 <body>
 
-<ul>
-    <li th:each="note : ${notes}"><span th:text="${note.data}">notes</span></li>
-</ul>
+
+<table border="1">
+    <tr>
+        <th>Заметка</th>
+        <th>Завершение</th>
+    </tr>
+    <th:block th:each="note : ${notes}">
+        <tr>
+            <td th:text="${note.data}">Data</td>
+            <td th:text="${note.getDone()}"></td>
+        </tr>
+    </th:block>
+</table>
+
 
 </body>
 </html>
