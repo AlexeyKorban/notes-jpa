@@ -12,15 +12,17 @@
     <tr>
         <th>Заметка</th>
         <th>Завершение</th>
+        <th></th>
+        <th></th>
     </tr>
     <th:block th:each="note : ${notes}">
         <tr>
             <td th:text="${note.data}">Data</td>
             <td th:text="${note.getDone()}"></td>
+            <td th:text="${note.getId()}"></td>
+            <td></td>
         </tr>
     </th:block>
 </table>
-
-
 </body>
 </html>
