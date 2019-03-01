@@ -19,10 +19,16 @@
         <tr>
             <td th:text="${note.data}">Data</td>
             <td th:text="${note.getDone()}"></td>
-            <td th:text="${note.getId()}"></td>
-            <td></td>
+            <td><a th:href="@{/update(id=${note.id})}">Edit</a></td>
+            <td><a th:href="@{/delete(id=${note.id})}">Delete</a></td>
         </tr>
     </th:block>
+        <tr>
+            <td><input type="text"/></td>
+            <td></td>
+            <td></td>
+            <td><input type="submit" value="Save"></td>
+        </tr>
 </table>
 </body>
 </html>
