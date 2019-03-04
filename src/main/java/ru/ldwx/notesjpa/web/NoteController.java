@@ -3,6 +3,7 @@ package ru.ldwx.notesjpa.web;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ru.ldwx.notesjpa.data.NotesRepository;
 
@@ -18,6 +19,13 @@ public class NoteController {
 
     @RequestMapping("/notes")
     public String getAll(Model model) {
+        model.addAttribute("notes", notesRepository.findAll());
+        return "notes";
+    }
+
+    @RequestMapping(value = "/delete/{id}")
+    public String delete(Model model, @PathVariable("id") long id) {
+        notesRepository.deleteById(id);
         model.addAttribute("notes", notesRepository.findAll());
         return "notes";
     }
