@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.*;
 import ru.ldwx.notesjpa.Note;
 import ru.ldwx.notesjpa.data.NotesRepository;
 
+import java.util.Comparator;
+import java.util.List;
+
 @Controller
 public class NoteController {
 
@@ -19,23 +22,30 @@ public class NoteController {
 
     @RequestMapping("/notes")
     public String getAll(Model model) {
-        model.addAttribute("notes", notesRepository.findAll());
-        model.addAttribute("note", new Note("Fill"));
+        List<Note> notes = notesRepository.findAll();
+        notes.sort(Comparator.comparing(Note::getId));
+        model.addAttribute("notes", notes);
+        model.addAttribute("note", new Note("Empty note"));
         return "notes";
     }
 
     @RequestMapping(value = "/delete/{id}")
-    public String delete(Model model, @PathVariable("id") long id) {
+    public String delete(@PathVariable("id") long id) {
         notesRepository.deleteById(id);
-        model.addAttribute("notes", notesRepository.findAll());
         return "redirect:/notes";
     }
 
     @PostMapping(path = "/notes")
     public String save(@ModelAttribute Note note) {
-        System.out.println(note.getData() + " asdfasdf");
         notesRepository.save(note);
         return "redirect:/notes";
     }
 
+    @RequestMapping(value = "/done/{id}")
+    public String setDone(@PathVariable("id") long id) {
+        Note note = notesRepository.getOne(id);
+        note.setDone(true);
+        notesRepository.save(note);
+        return "redirect:/notes";
+    }
 }

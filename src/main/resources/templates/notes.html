@@ -4,39 +4,38 @@
 <head>
     <meta charset="UTF-8">
     <title>Notes</title>
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}">
+
+
 </head>
 <body>
 
 
-<table border="1">
-    <tr>
-        <th>Заметка</th>
-        <th>Завершение</th>
-        <th></th>
-        <th></th>
-    </tr>
-    <th:block th:each="note : ${notes}">
-        <tr>
-            <td th:text="${note.data}">Data</td>
-            <td th:text="${note.getDone()}"></td>
-            <td><a th:href="@{/update(id=${note.id})}">Edit</a></td>
-            <td><a th:href="@{'/delete/' + ${note.id}}">Delete</a></td>
-        </tr>
-    </th:block>
-<!--    <tr>
-        <td><input type="text"/></td>
-        <td></td>
-        <td></td>
-        <td><input type="submit" value=" "></td>
-    </tr>-->
-
-</table>
-
 <!--/*@thymesVar id="note" type="ru.ldwx.notesjpa.Note"*/-->
 <form action="#" th:action="@{/notes}" th:object="${note}" method="post">
-    <p>Message: <input type="text" th:field="*{data}"/></p>
-    <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+    <table border="1">
+        <tr>
+            <th>Заметка</th>
+            <th>Завершение</th>
+            <th></th>
+            <th></th>
+        </tr>
+        <th:block th:each="note : ${notes}">
+            <tr th:attr="data-noteDone=${note.done}">
+                <td th:text="${note.data}">Data</td>
+                <td><a th:href="@{'/done/' + ${note.id}}">Done</a></td>
+                <td><a th:href="@{'/update/' + ${note.id}}">Edit</a></td>
+                <td><a th:href="@{'/delete/' + ${note.id}}">Delete</a></td>
+            </tr>
+        </th:block>
+        <tr>
+            <td><input type="text" th:field="*{data}"/></td>
+            <td></td>
+            <td></td>
+            <td><input type="submit" value=" "></td>
+        </tr>
+
+    </table>
 </form>
 </body>
 </html>
