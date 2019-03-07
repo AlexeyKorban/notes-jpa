@@ -24,7 +24,7 @@
             <tr th:attr="data-noteDone=${note.done}">
                 <td th:text="${note.data}">Data</td>
                 <td><a th:href="@{'/done/' + ${note.id}}">Done</a></td>
-                <td><a th:href="@{'/update/' + ${note.id}}">Edit</a></td>
+                <td><a th:href="@{'/edit/' + ${note.id}}">Edit</a></td>
                 <td><a th:href="@{'/delete/' + ${note.id}}">Delete</a></td>
             </tr>
         </th:block>

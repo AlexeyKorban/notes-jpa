@@ -48,4 +48,11 @@ public class NoteController {
         notesRepository.save(note);
         return "redirect:/notes";
     }
+
+    @RequestMapping(value = "/edit/{id}")
+    public String edit(Model model, @PathVariable("id") long id) {
+        Note note = notesRepository.getOne(id);
+        model.addAttribute("note", note);
+        return "editNote";
+    }
 }
