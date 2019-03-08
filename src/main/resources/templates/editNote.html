@@ -1,10 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Note</title>
 </head>
 <body>
 
+<form th:action="@{/update}" th:object="${note}" method="post">
+    <table>
+        <tr>
+            <td><input title="id" type="number" hidden="true" th:field="*{id}"/></td>
+            <td><input title="data" type="text" th:field="*{data}"/></td>
+            <td><input title="idDone" type="checkbox" name="idDone" value="idDone"></td>
+            <td><input type="submit" value="Save"></td>
+        </tr>
+    </table>
+</form>
 </body>
 </html>

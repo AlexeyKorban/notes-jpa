@@ -21,7 +21,7 @@ public class HomePageBrowserTest {
     private static HtmlUnitDriver browser;
 
     @BeforeClass
-    public static void setup() {
+    public static void setUp() {
         browser = new HtmlUnitDriver();
 
         browser.manage().timeouts()
@@ -29,7 +29,7 @@ public class HomePageBrowserTest {
     }
 
     @AfterClass
-    public static void teardown() {
+    public static void tearDown() {
         browser.quit();
     }
 

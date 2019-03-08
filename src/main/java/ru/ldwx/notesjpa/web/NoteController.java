@@ -55,4 +55,10 @@ public class NoteController {
         model.addAttribute("note", note);
         return "editNote";
     }
+
+    @PostMapping(path = "/update")
+    public String update(@ModelAttribute Note note) {
+        notesRepository.save(note);
+        return "redirect:/notes";
+    }
 }
