@@ -26,7 +26,6 @@ public class NotesRepositoryTest {
 
     @Test
     public void getAll() {
-        Assert.assertEquals(6, repository.count());
         assertThat(repository.findAll()).isEqualTo(NOTES);
     }
 
