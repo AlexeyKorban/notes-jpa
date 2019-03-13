@@ -16,16 +16,16 @@
     <table border="1">
         <tr>
             <th>Заметка</th>
-            <th>Завершение</th>
+            <th></th>
             <th></th>
             <th></th>
         </tr>
         <th:block th:each="note : ${notes}">
             <tr th:attr="data-noteDone=${note.done}">
                 <td th:text="${note.data}">Data</td>
-                <td><a th:href="@{'/done/' + ${note.id}}">Done</a></td>
-                <td><a th:href="@{'/edit/' + ${note.id}}">Edit</a></td>
-                <td><a th:href="@{'/delete/' + ${note.id}}">Delete</a></td>
+                <td><a th:href="@{'/done/' + ${note.id}}"><img th:src="@{${'/images/done.png'}}" width="20" height="20" about="Завершить" title="Завершить"/></a></td>
+                <td><a th:href="@{'/edit/' + ${note.id}}"><img th:src="@{${'/images/edit.png'}}" width="20" height="20" about="Редактировать" title="Редактировать"/></a></td>
+                <td><a th:href="@{'/delete/' + ${note.id}}"><img th:src="@{${'/images/delete.png'}}" width="20" height="20" about="Удалить" title="Удалить"/></a></td>
             </tr>
         </th:block>
         <tr>
