@@ -2,40 +2,144 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
     <title>Notes</title>
+    <!-- Main styles for this application-->
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
 
-
 </head>
-<body>
-
-
-<!--/*@thymesVar id="note" type="ru.ldwx.notesjpa.Note"*/-->
-<form action="#" th:action="@{/notes}" th:object="${note}" method="post">
-    <table border="1">
-        <tr>
-            <th>Заметка</th>
-            <th></th>
-            <th></th>
-            <th></th>
-        </tr>
-        <th:block th:each="note : ${notes}">
-            <tr th:attr="data-noteDone=${note.done}">
-                <td th:text="${note.data}">Data</td>
-                <td><a th:href="@{'/done/' + ${note.id}}"><img th:src="@{${'/images/done.png'}}" width="20" height="20" about="Завершить" title="Завершить"/></a></td>
-                <td><a th:href="@{'/edit/' + ${note.id}}"><img th:src="@{${'/images/edit.png'}}" width="20" height="20" about="Редактировать" title="Редактировать"/></a></td>
-                <td><a th:href="@{'/delete/' + ${note.id}}"><img th:src="@{${'/images/delete.png'}}" width="20" height="20" about="Удалить" title="Удалить"/></a></td>
-            </tr>
-        </th:block>
-        <tr>
-            <td><input type="text" th:field="*{data}"/></td>
-            <td></td>
-            <td></td>
-            <td><input type="submit" value=" "></td>
-        </tr>
-
-    </table>
-</form>
+<body class="app header-fixed sidebar-fixed aside-menu-fixed sidebar-lg-show">
+<header class="app-header navbar">
+    <button class="navbar-toggler sidebar-toggler d-lg-none mr-auto" type="button" data-toggle="sidebar-show">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href="#">
+        <img class="navbar-brand-full" th:src="@{${'/images/logo.png'}}" width="45" height="45" alt="Notes Logo">
+    </a>
+    <button class="navbar-toggler sidebar-toggler d-md-down-none" type="button" data-toggle="sidebar-lg-show">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <ul class="nav navbar-nav d-md-down-none">
+        <li class="nav-item px-3">
+            <a class="nav-link" href="#">Notes</a>
+        </li>
+        <li class="nav-item px-3">
+            <a class="nav-link" href="#">Settings</a>
+        </li>
+    </ul>
+    <ul class="nav navbar-nav ml-auto">
+        <li class="nav-item d-md-down-none">
+            <a class="nav-link" href="#">
+                <i class="icon-list"></i>
+            </a>
+        </li>
+        <li class="nav-item d-md-down-none">
+            <a class="nav-link" href="#">
+                <i class="icon-location-pin"></i>
+            </a>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                <img class="img-avatar" th:src="@{${'/images/avatar.jpg'}}" alt="admin@ldwx.ru">
+            </a>
+        </li>
+        <li>
+            <button class="btn btn-block btn-primary" type="button">Logout</button>
+        </li>
+    </ul>
+</header>
+<div class="app-body">
+    <div class="sidebar">
+        <nav class="sidebar-nav">
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/notes}">
+                        <i class="nav-icon icon-speedometer"></i> Notes
+                    </a>
+                </li>
+                <li class="nav-title">Reports</li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/notes}">
+                        <i class="nav-icon icon-drop"></i> Completed</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/notes}">
+                        <i class="nav-icon icon-pencil"></i> Charts</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <main class="main">
+        <div class="card">
+            <div class="card-header">
+                <i class="fa fa-align-justify"></i> Notes List
+            </div>
+            <div class="card-body">
+                <!--/*@thymesVar id="note" type="ru.ldwx.notesjpa.Note"*/-->
+                <form action="#" th:action="@{/notes}" th:object="${note}" method="post">
+                <table class="table table-responsive-sm table-bordered">
+                    <thead>
+                    <tr>
+                        <th>Заметка</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <th:block th:each="note : ${notes}">
+                        <tr th:attr="data-noteDone=${note.done}">
+                            <td th:text="${note.data}">Data</td>
+                            <td><a th:href="@{'/done/' + ${note.id}}"><img th:src="@{${'/images/done.png'}}" width="20"
+                                                                           height="20" about="Завершить"
+                                                                           title="Завершить"/></a></td>
+                            <td><a th:href="@{'/edit/' + ${note.id}}"><img th:src="@{${'/images/edit.png'}}" width="20"
+                                                                           height="20" about="Редактировать"
+                                                                           title="Редактировать"/></a></td>
+                            <td><a th:href="@{'/delete/' + ${note.id}}"><img th:src="@{${'/images/delete.png'}}"
+                                                                             width="20" height="20" about="Удалить"
+                                                                             title="Удалить"/></a></td>
+                        </tr>
+                    </th:block>
+                    <tr>
+                        <td><input type="text" th:field="*{data}"/></td>
+                        <td></td>
+                        <td></td>
+                        <td><input type="submit" value=" "></td>
+                    </tr>
+                    </tbody>
+                </table>
+                </form>
+                <ul class="pagination">
+                    <li class="page-item">
+                        <a class="page-link" href="#">Prev</a>
+                    </li>
+                    <li class="page-item active">
+                        <a class="page-link" href="#">1</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">2</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">3</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">4</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">Next</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </main>
+    <aside class="aside-menu">
+    </aside>
+</div>
+<footer class="app-footer">
+    <div>
+        <a href="#">ldwx</a>
+        <span>&copy; 2018 ldwx</span>
+    </div>
+</footer>
 </body>
 </html>
