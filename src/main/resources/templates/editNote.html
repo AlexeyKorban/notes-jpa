@@ -34,22 +34,71 @@
     </div>
 
     <main class="main">
-        <div class="card">
-            <form th:action="@{/update}" th:object="${note}" method="post">
-                <table>
-                    <tr>
-                        <td><input title="id" type="number" hidden="true" th:field="*{id}"/></td>
-                        <td><input title="data" type="text" th:field="*{data}"/></td>
-                        <td><select th:field="*{done}">
-                            <option th:value="true" data-th-field="*{done}">Done</option>
-                            <option th:value="false" data-th-field="*{done}">Not done</option>
-                        </select></td>
-                        <td><input type="submit" value=" "></td>
-                    </tr>
-                </table>
-            </form>
+        <!--        <div class="card">
+                    <form th:action="@{/update}" th:object="${note}" method="post">
+                        <table>
+                            <tr>
+                                <td><input title="id" type="number" hidden="true" th:field="*{id}"/></td>
+                                <td><input title="data" type="text" th:field="*{data}"/></td>
+                                <td><select th:field="*{done}">
+                                    <option th:value="true" data-th-field="*{done}">Done</option>
+                                    <option th:value="false" data-th-field="*{done}">Not done</option>
+                                </select></td>
+                                <td><input type="submit" value=" "></td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>-->
+        <!--    </main>-->
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">Home</li>
+        </ol>
+
+        <div class="container-fluid">
+            <div class="animated fadeIn">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="card">
+                            <form class="form-horizontal" th:action="@{/update}" th:object="${note}" method="post">
+                                <div class="card-header">
+                                    <strong>Edit note</strong>
+                                </div>
+                                <div class="card-body">
+                                    <div class="form-group row">
+                                        <label class="col-md-3 col-form-label" for="text-input">Note</label>
+                                        <div class="col-md-9">
+                                            <input title="id" type="number" hidden="true" th:field="*{id}"/>
+                                            <input class="form-control" th:field="*{data}" id="text-input" type="text" name="text-input"
+                                                   placeholder="Text" >
+                                            <span class="help-block">Введите заметку</span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-3 col-form-label" for="select1">Select</label>
+                                        <div class="col-md-9">
+                                            <select class="form-control" id="select1" name="select1" th:field="*{done}">
+                                                <option th:value="true" data-th-field="*{done}">Done</option>
+                                                <option th:value="false" data-th-field="*{done}">Not done</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <button class="btn btn-sm btn-primary" type="submit">
+                                        <i class="fa fa-dot-circle-o"></i> Submit
+                                    </button>
+                                    <button class="btn btn-sm btn-danger" type="reset">
+                                        <i class="fa fa-ban"></i> Reset
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
+
 </div>
 <div th:replace="fragments/footer :: footer"></div>
 </body>
